@@ -45,14 +45,14 @@ function! flutter#_exit_cb(job, status) abort
   call job_stop(a:job)
 endfunction
 
-function! flutter#_on_exit_nvim(id, data, event) abort dict
+function! flutter#_on_exit_nvim(job_id, data, event) abort dict
   if exists('g:flutter_job')
     unlet g:flutter_job
   endif
-  call jobstop(id)
+  call jobstop(job_id)
 endfunction
 
-function! flutter#_on_output_nvim(id, data, event) abort dict
+function! flutter#_on_output_nvim(job_id, data, event) abort dict
   if !empty(a:data)
     call writefile(filter(a:data, '!empty(v:val)'), '__Flutter_Output__', 'a')
   endif
