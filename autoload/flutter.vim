@@ -45,6 +45,19 @@ function! flutter#_exit_cb(job, status) abort
   call job_stop(a:job)
 endfunction
 
+function! flutter#_on_exit_nvim(id, data, event) abort dict
+  if exists('g:flutter_job')
+    unlet g:flutter_job
+  endif
+  call jobstop(id)
+endfunction
+
+function! flutter#_on_output_nvim(id, data, event) abort dict
+  if !empty(a:data)
+    call writefile(filter(a:data, '!empty(v:val)'), '__Flutter_Output__', 'a')
+  endif
+endfunction
+
 function! flutter#run(...) abort
  if exists('g:flutter_job')
    echoerr 'Another Flutter process is running.'
@@ -64,9 +77,9 @@ function! flutter#run(...) abort
 
   if has('nvim')
     let g:flutter_job = jobstart(cmd, {
-      \ 'on_stdout' : function('flutter#_callback_nvim_output'),
-      \ 'on_stderr' : function('flutter#_callback_nvim_output'),
-      \ 'on_exit' : function('flutter#_callback_nvim_exit'),
+      \ 'on_stdout' : function('flutter#_on_output_nvim'),
+      \ 'on_stderr' : function('flutter#_on_output_nvim'),
+      \ 'on_exit' : function('flutter#_on_exit_nvim'),
       \ })
   elseif v:version >= 800
     let g:flutter_job = job_start(cmd, {
@@ -78,14 +91,4 @@ function! flutter#run(...) abort
       \ })
   endif
 
-endfunction
-
-function! flutter#_callback_nvim_output(id, data, event) abort dict
-  if !empty(a:data)
-    call writefile(filter(a:data, '!empty(v:val)'), '__Flutter_Output__', 'a')
-  endif
-endfunction
-
-function! flutter#_callback_nvim_exit(id, data, event) abort dict
-  call flutter#_exit_cb(a:job, a:status)
 endfunction
