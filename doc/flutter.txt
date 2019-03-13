@@ -58,4 +58,11 @@ vertical split window.
 
 Opens the `__Flutter_Output__` buffer in a new tab.
 
+FlutterMenu                                         *FlutterMenu*
+
+Creates a `Flutter` menu. Will likely error if GUI is not
+enabled.
+
+
+
  vim:tw=78:ts=8:noet:ft=help:norl:

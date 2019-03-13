@@ -49,6 +49,9 @@ The following are self-explanatory:
 * `:FlutterVSplit`
 * `:FlutterTab`
 
+## Menu Support
+If you are using a GUI Vim Variant, you can add a `Flutter` menu by calling `call FlutterMenu()`.
+
 ## Hot Reload on Save
 A convenient feature to have when working with Flutter is
 to automatically hot-reload an app once a file is saved.
@@ -61,6 +64,10 @@ You can disable this by setting `g:hot_reload_on_save=0`,
 ## Example `.vimrc`
 ```vim
 Plug 'thosakwe/vim-flutter'
+call plug#end()
+
+" Enable Flutter menu
+call FlutterMenu()
 
 " Some of these key choices were arbitrary;
 " it's just an example.
