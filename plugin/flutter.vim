@@ -22,6 +22,6 @@ if g:flutter_hot_reload_on_save
   autocmd FileType dart autocmd BufWritePre <buffer> call flutter#hot_reload_quiet()
 endif
 
-command FlutterSplit :split __Flutter_Output__<cr>
-command FlutterVSplit :vsplit __Flutter_Output__<cr>
-command FlutterTab :tabnew __Flutter_Output__<cr>
+command FlutterSplit :split __Flutter_Output__
+command FlutterVSplit :vsplit __Flutter_Output__
+command FlutterTab :tabnew __Flutter_Output__
