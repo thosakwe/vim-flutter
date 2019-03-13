@@ -1,5 +1,5 @@
 function! s:flutter_run_handler(job_id, data, event_type)
-  echo a:job_id 
+  echo a:job_id
   echo a:event_type
   echo join(a:data, '\n')
 endfunction
