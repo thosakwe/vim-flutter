@@ -49,7 +49,7 @@ function! flutter#_on_exit_nvim(job_id, data, event) abort dict
   if exists('g:flutter_job')
     unlet g:flutter_job
   endif
-  call jobstop(job_id)
+  call jobstop(a:job_id)
 endfunction
 
 function! flutter#_on_output_nvim(job_id, data, event) abort dict
