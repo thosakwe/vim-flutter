@@ -90,6 +90,8 @@ function! flutter#run(...) abort
       \ 'err_name': '__Flutter_Output__',
       \ 'exit_cb': 'flutter#_exit_cb',
       \ })
+  else
+    echoerr 'This vim does not support async jobs needed for running Flutter.'
   endif
 
 endfunction
