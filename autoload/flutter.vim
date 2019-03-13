@@ -54,8 +54,12 @@ function! flutter#run(...) abort
  normal! ggdG
  setlocal buftype=nofile
  setlocal bufhidden=hide
+ setlocal showcmd
+ setlocal noruler
  setlocal noswapfile
  setlocal hidden
+ setlocal noshowmode
+ setlocal laststatus=0
 
   let cmd = g:flutter_command.' run'
   if !empty(a:000)
