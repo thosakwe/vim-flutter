@@ -54,7 +54,7 @@ endfunction
 
 function! flutter#_on_output_nvim(job_id, data, event) abort dict
   if !empty(a:data)
-    let lines = split(filter(a:data, '!empty(v:val)'), "\n")
+    let lines = filter(a:data, '!empty(v:val)')
     call nvim_buf_set_lines(bufnr('__Flutter_Output__'), -1, -1, v:true, lines)
   endif
 endfunction
