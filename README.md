@@ -1,6 +1,8 @@
 # vim-flutter
 Vim commands for Flutter, including hot-reload-on-save and more.
 
+![Demo usage GIF](demo.gif)
+
 ## Installation
 `vim-flutter` is a Vimscript-only plugin, and makes heavy
 use of Vim8's async jobs. It can be installed with a
