@@ -4,9 +4,21 @@ Vim commands for Flutter, including hot-reload-on-save and more.
 ## Installation
 `vim-flutter` is a Vimscript-only plugin, and makes heavy
 use of Vim8's async jobs. It can be installed with a
-package manager like `vim-plug`, for example.
+package manager like
+[`vim-plug`](https://github.com/junegunn/vim-plug)
+, for example.
+
+Though this package doesn't depend on it, having
+[`dart-vim-plugin`](https://github.com/dart-lang/dart-vim-plugin)
+available is recommended, for a betterexperience.
+
+You may also consider combining
+[`package:dart_language_server`](https://github.com/natebosch/dart_language_server)
+with a Language Server Protocol client, like
+[`ale`](https://github.com/w0rp/ale).
 
 ```vim
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 
 " Run :PlugInstall to install the plugin.
