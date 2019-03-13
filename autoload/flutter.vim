@@ -62,11 +62,30 @@ function! flutter#run(...) abort
     let cmd .= ' '.join(a:000)
   endif
 
-  let g:flutter_job = job_start(cmd, {
-    \ 'out_io': 'buffer',
-    \ 'out_name': '__Flutter_Output__',
-    \ 'err_io': 'buffer',
-    \ 'err_name': '__Flutter_Output__',
-    \ 'exit_cb': 'flutter#_exit_cb',
-    \ })
+  if has('nvim')
+    let g:flutter_job = jobstart(cmd, {
+      \ 'on_stdout' : function('flutter#_callback_nvim_output'),
+      \ 'on_stderr' : function('flutter#_callback_nvim_output'),
+      \ 'on_exit' : function('flutter#_callback_nvim_exit'),
+      \ })
+  elseif v:version >= 800
+    let g:flutter_job = job_start(cmd, {
+      \ 'out_io': 'buffer',
+      \ 'out_name': '__Flutter_Output__',
+      \ 'err_io': 'buffer',
+      \ 'err_name': '__Flutter_Output__',
+      \ 'exit_cb': 'flutter#_exit_cb',
+      \ })
+  endif
+
+endfunction
+
+function! flutter#_callback_nvim_output(id, data, event) abort dict
+  if !empty(a:data)
+    call writefile(filter(a:data, '!empty(v:val)'), '__Flutter_Output__', 'a')
+  endif
+endfunction
+
+function! flutter#_callback_nvim_exit(id, data, event) abort dict
+  call flutter#_exit_cb(a:job, a:status)
 endfunction
