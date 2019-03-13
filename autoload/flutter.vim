@@ -24,6 +24,12 @@ function! flutter#hot_reload() abort
   return flutter#send('r')
 endfunction
 
+function! flutter#hot_reload_quiet() abort
+  if exists('g:flutter_job')
+    return flutter#send('r')
+  endif
+endfunction
+
 function! flutter#hot_restart() abort
   return flutter#send('R')
 endfunction

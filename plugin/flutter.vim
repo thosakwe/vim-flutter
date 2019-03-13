@@ -19,7 +19,7 @@ command FlutterHotRestart call flutter#hot_restart()
 command FlutterQuit call flutter#quit()
 
 if g:flutter_hot_reload_on_save
-  autocmd FileType dart autocmd BufWritePre <buffer> call flutter#hot_reload()
+  autocmd FileType dart autocmd BufWritePre <buffer> call flutter#hot_reload_quiet()
 endif
 
 command FlutterSplit :split __Flutter_Output__<cr>
