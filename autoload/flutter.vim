@@ -45,6 +45,7 @@ function! flutter#_exit_cb(job, status) abort
   call job_stop(a:job)
 endfunction
 
+if has('nvim')
 function! flutter#_on_exit_nvim(job_id, data, event) abort dict
   if exists('g:flutter_job')
     unlet g:flutter_job
@@ -57,6 +58,7 @@ function! flutter#_on_output_nvim(job_id, data, event) abort dict
     call nvim_buf_set_lines(bufnr('__Flutter_Output__'), -1, -1, v:true, lines)
   endif
 endfunction
+endif
 
 function! flutter#run(...) abort
  if exists('g:flutter_job')
