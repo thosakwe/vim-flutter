@@ -15,8 +15,12 @@ function! flutter#send(msg) abort
   if !exists('g:flutter_job')
     echoerr 'Flutter is not running.'
   else
-    let chan = job_getchannel(g:flutter_job)
-    call ch_sendraw(chan, a:msg)
+    if has('nvim')
+      call chansend(g:flutter_job, a:msg)
+    else
+      let chan = job_getchannel(g:flutter_job)
+      call ch_sendraw(chan, a:msg)
+    endif
   endif
 endfunction
 
