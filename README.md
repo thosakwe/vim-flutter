@@ -16,7 +16,7 @@ package manager like
 
 Though this package doesn't depend on it, having
 [`dart-vim-plugin`](https://github.com/dart-lang/dart-vim-plugin)
-available is recommended, for a betterexperience.
+available is recommended, for a better experience.
 
 You may also consider combining
 [`package:dart_language_server`](https://github.com/natebosch/dart_language_server)
