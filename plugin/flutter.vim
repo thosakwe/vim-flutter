@@ -17,6 +17,7 @@ command! -nargs=* FlutterRun call flutter#run(<f-args>)
 command! FlutterHotReload call flutter#hot_reload()
 command! FlutterHotRestart call flutter#hot_restart()
 command! FlutterQuit call flutter#quit()
+command! FlutterVisualDebug call flutter#visual_debug()
 
 if g:flutter_hot_reload_on_save
   autocmd FileType dart autocmd BufWritePost <buffer> call flutter#hot_reload_quiet()
