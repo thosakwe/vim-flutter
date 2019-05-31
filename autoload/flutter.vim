@@ -24,6 +24,10 @@ function! flutter#send(msg) abort
   endif
 endfunction
 
+function! flutter#visual_debug() abort
+  return flutter#send('p')
+endfunction
+
 function! flutter#hot_reload() abort
   return flutter#send('r')
 endfunction
