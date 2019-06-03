@@ -11,6 +11,18 @@ function! flutter#devices() abort
   setlocal nomodifiable
 endfunction
 
+function! flutter#emulators() abort
+  new
+  setlocal buftype=nofile
+  execute "read !" . g:flutter_command ."  emulators"
+  setlocal nomodifiable
+endfunction
+ 
+function! flutter#emulators_launch(emulator) abort
+  let cmd = g:flutter_command . " emulators --launch ". a:emulator
+  execute "r!". cmd
+endfunction
+
 function! flutter#send(msg) abort
   if !exists('g:flutter_job')
     echoerr 'Flutter is not running.'

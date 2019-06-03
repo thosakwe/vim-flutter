@@ -13,6 +13,8 @@ if !exists('g:flutter_hot_reload_on_save')
 endif
 
 command! FlutterDevices call flutter#devices()
+command! FlutterEmulators call flutter#emulators()
+command! -nargs=1 FlutterEmulatorsLanuch call flutter#emulators_launch(<f-args>)
 command! -nargs=* FlutterRun call flutter#run(<f-args>)
 command! FlutterHotReload call flutter#hot_reload()
 command! FlutterHotRestart call flutter#hot_restart()
