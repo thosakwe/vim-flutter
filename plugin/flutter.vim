@@ -23,9 +23,9 @@ if g:flutter_hot_reload_on_save
   autocmd FileType dart autocmd BufWritePost <buffer> call flutter#hot_reload_quiet()
 endif
 
-command! FlutterSplit :split __Flutter_Output__
-command! FlutterVSplit :vsplit __Flutter_Output__
-command! FlutterTab :tabnew __Flutter_Output__
+command! FlutterSplit :execute ':sbuffer ' . g:flutter_job
+command! FlutterVSplit :execute ':vert sbuffer ' . g:flutter_job
+command! FlutterTab :execute ':tab sbuffer ' . g:flutter_job
 
 function! FlutterMenu() abort  
   menu Flutter.Run :FlutterRun<CR>

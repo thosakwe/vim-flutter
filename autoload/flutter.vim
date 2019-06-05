@@ -18,8 +18,7 @@ function! flutter#send(msg) abort
     if has('nvim')
       call chansend(g:flutter_job, a:msg)
     else
-      let chan = job_getchannel(g:flutter_job)
-      call ch_sendraw(chan, a:msg)
+      call term_sendkeys(bufname(g:flutter_job), a:msg)
     endif
   endif
 endfunction
@@ -84,16 +83,6 @@ function! flutter#run(...) abort
    echoerr 'Another Flutter process is running.'
    return 0
  endif
- split __Flutter_Output__
- normal! ggdG
- setlocal buftype=nofile
- setlocal bufhidden=hide
- setlocal showcmd
- setlocal noruler
- setlocal noswapfile
- setlocal hidden
- setlocal noshowmode
- setlocal laststatus=0
 
   let cmd = g:flutter_command.' run'
   if !empty(a:000)
@@ -107,12 +96,9 @@ function! flutter#run(...) abort
       \ 'on_exit' : function('flutter#_on_exit_nvim'),
       \ })
   elseif v:version >= 800
-    let g:flutter_job = job_start(cmd, {
-      \ 'out_io': 'buffer',
-      \ 'out_name': '__Flutter_Output__',
-      \ 'err_io': 'buffer',
-      \ 'err_name': '__Flutter_Output__',
+    let g:flutter_job = term_start(cmd, {
       \ 'exit_cb': 'flutter#_exit_cb',
+      \ 'term_finish': 'close',
       \ })
   else
     echoerr 'This vim does not support async jobs needed for running Flutter.'
