@@ -20,7 +20,7 @@ endfunction
  
 function! flutter#emulators_launch(emulator) abort
   let cmd = g:flutter_command . " emulators --launch ". a:emulator
-  execute "r!". cmd
+  execute "!". cmd
 endfunction
 
 function! flutter#send(msg) abort
