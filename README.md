@@ -36,6 +36,8 @@ Ultimately, installation is up to you.
 * `g:flutter_command` - The Flutter executable path/name; defaults to `'flutter'`.
 * `g:flutter_hot_reload_on_save` - Whether to auto hot-reload when `dart` files
 are saved; defaults to `1`.
+* `g:flutter_show_log_on_run` - Automatically open `__Flutter_Output__` when starting
+flutter; defaults to `1`.
 
 ## Provided Commands
 * `:FlutterRun <args>` - calls `flutter run <args>`

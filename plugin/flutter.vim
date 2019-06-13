@@ -12,6 +12,10 @@ if !exists('g:flutter_hot_reload_on_save')
   let g:flutter_hot_reload_on_save=1
 endif
 
+if !exists('g:flutter_show_log_on_run')
+  let g:flutter_show_log_on_run=1
+endif
+
 command! FlutterDevices call flutter#devices()
 command! FlutterEmulators call flutter#emulators()
 command! -nargs=1 FlutterEmulatorsLaunch call flutter#emulators_launch(<f-args>)
