@@ -14,6 +14,9 @@ endif
 
 if !exists('g:flutter_show_log_on_run')
   let g:flutter_show_log_on_run=1
+elseif &hidden == 0 && g:flutter_show_log_on_run == 0
+  echoerr "WARNING: Hidden buffers are disabled. Setting g:flutter_show_log_on_run to 1. Please add `set hidden` to your vimrc to keep the flutter log in the background."
+  let g:flutter_show_log_on_run = 1
 endif
 
 command! FlutterDevices call flutter#devices()
