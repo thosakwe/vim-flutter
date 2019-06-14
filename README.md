@@ -44,6 +44,15 @@ are saved; defaults to `1`.
 * `:FlutterQuit` - quits the current Flutter process
 * `:FlutterDevices` - opens a new buffer, and writes the output of `flutter devices` to it
 * `:FlutterSplit` - opens Flutter output in a horizontal split
+* `:FlutterAnalyze` - analyzes flutter project
+* `:FlutterClean` - cleans project from build files
+* `:FlutterDoctor` checks project dependencies, connected devices etc
+* `:FlutterDrive` - shows all connected devices
+* `:FlutterScreenshot` - takes screenshot on connected devices and save it in flutter
+  project folder
+* `:FlutterLogs` - shows debug logs of connected devices
+* `:FlutterInstall` - installs files on connected device
+* `:FlutterFormat` - formatting current Dart file
 
 The following are self-explanatory:
 * `:FlutterVSplit`
