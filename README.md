@@ -46,6 +46,10 @@ flutter; defaults to `1`. Setting this to 0 requires `set hidden` in your vimrc.
 * `:FlutterQuit` - quits the current Flutter process
 * `:FlutterDevices` - opens a new buffer, and writes the output of `flutter devices` to it
 * `:FlutterSplit` - opens Flutter output in a horizontal split
+* `:FlutterEmulators` - Executes a `flutter emulators` process.
+* `:FlutterEmulatorsLaunch` - Executes a `flutter emulators --launch` process, with any provided
+arguments.
+* `:FlutterVisualDebug` - Toggles visual debugging in the running Flutter process.
 
 The following are self-explanatory:
 * `:FlutterVSplit`

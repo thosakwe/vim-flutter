@@ -8,11 +8,21 @@ COMMANDS                                                *flutter*
 
 g:flutter_command                             *g:flutter_command*
 
+The name of the `flutter` executable. Defaults to `flutter`.
+
 g:flutter_hot_reload_on_save       *g:flutter_hot_reload_on_save*
 
 Whether to auto hot-reload when `dart` files are saved.
 Defaults to `1`.
 See |:FlutterHotReload|.
+
+g:flutter_show_log_on_run             *g:flutter_show_log_on_run*
+
+Automatically open `__Flutter_Output__` when starting
+|g:flutter_command|; defaults to `1`.
+Setting this to `0` requires `set hidden` in your vimrc.
+
+See |buffer-hidden|.
 
 :FlutterRun                                         *:FlutterRun*
 
@@ -57,6 +67,19 @@ vertical split window.
 :FlutterTab                                         *:FlutterTab*
 
 Opens the `__Flutter_Output__` buffer in a new tab.
+
+:FlutterEmulators                                   *:FlutterEmulators*
+
+Executes a `flutter emulators` process.
+
+:FlutterEmulatorsLaunch                       *:FlutterEmulatorsLaunch*
+
+Executes a `flutter emulators --launch` process, with any provided
+arguments.
+
+:FlutterVisualDebug                               *:FlutterVisualDebug*
+
+Toggles visual debugging in the running Flutter process.
 
 FlutterMenu                                         *FlutterMenu*
 
