@@ -92,20 +92,18 @@ endfunction
 endif
 
 function! flutter#run(...) abort
- if exists('g:flutter_job')
-   echoerr 'Another Flutter process is running.'
-   return 0
- endif
- split __Flutter_Output__
- normal! ggdG
- setlocal buftype=nofile
- setlocal bufhidden=hide
- setlocal showcmd
- setlocal noruler
- setlocal noswapfile
- setlocal hidden
- setlocal noshowmode
- setlocal laststatus=0
+  if exists('g:flutter_job')
+    echoerr 'Another Flutter process is running.'
+    return 0
+  endif
+
+  if g:flutter_show_log_on_run
+    split __Flutter_Output__
+    normal! ggdG
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+  endif
 
   let cmd = g:flutter_command.' run'
   if !empty(a:000)
@@ -114,18 +112,18 @@ function! flutter#run(...) abort
 
   if has('nvim')
     let g:flutter_job = jobstart(cmd, {
-      \ 'on_stdout' : function('flutter#_on_output_nvim'),
-      \ 'on_stderr' : function('flutter#_on_output_nvim'),
-      \ 'on_exit' : function('flutter#_on_exit_nvim'),
-      \ })
+          \ 'on_stdout' : function('flutter#_on_output_nvim'),
+          \ 'on_stderr' : function('flutter#_on_output_nvim'),
+          \ 'on_exit' : function('flutter#_on_exit_nvim'),
+          \ })
   elseif v:version >= 800
     let g:flutter_job = job_start(cmd, {
-      \ 'out_io': 'buffer',
-      \ 'out_name': '__Flutter_Output__',
-      \ 'err_io': 'buffer',
-      \ 'err_name': '__Flutter_Output__',
-      \ 'exit_cb': 'flutter#_exit_cb',
-      \ })
+          \ 'out_io': 'buffer',
+          \ 'out_name': '__Flutter_Output__',
+          \ 'err_io': 'buffer',
+          \ 'err_name': '__Flutter_Output__',
+          \ 'exit_cb': 'flutter#_exit_cb',
+          \ })
   else
     echoerr 'This vim does not support async jobs needed for running Flutter.'
   endif
