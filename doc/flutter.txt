@@ -16,6 +16,12 @@ Whether to auto hot-reload when `dart` files are saved.
 Defaults to `1`.
 See |:FlutterHotReload|.
 
+g:flutter_hot_restart_on_save     *g:flutter_hot_restart_on_save*
+
+Whether to auto hot-restart when `dart` files are saved.
+Defaults to `0`.
+See |:FlutterHotRestart|.
+
 g:flutter_show_log_on_run             *g:flutter_show_log_on_run*
 
 Automatically open `__Flutter_Output__` when starting

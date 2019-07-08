@@ -12,6 +12,10 @@ if !exists('g:flutter_hot_reload_on_save')
   let g:flutter_hot_reload_on_save=1
 endif
 
+if !exists('g:flutter_hot_restart_on_save')
+  let g:flutter_hot_restart_on_save=0
+endif
+
 if !exists('g:flutter_show_log_on_run')
   let g:flutter_show_log_on_run=1
 elseif &hidden == 0 && g:flutter_show_log_on_run == 0
@@ -30,6 +34,10 @@ command! FlutterVisualDebug call flutter#visual_debug()
 
 if g:flutter_hot_reload_on_save
   autocmd! BufWritePost *.dart call flutter#hot_reload_quiet()
+endif
+
+if g:flutter_hot_restart_on_save
+  autocmd! BufWritePost *.dart call flutter#hot_restart_quiet()
 endif
 
 command! FlutterSplit :split __Flutter_Output__
