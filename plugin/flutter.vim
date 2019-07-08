@@ -13,7 +13,7 @@ if !exists('g:flutter_hot_reload_on_save')
 endif
 
 if !exists('g:flutter_hot_restart_on_save')
-  let g:flutter_hot_restart_on_save=1
+  let g:flutter_hot_restart_on_save=0
 endif
 
 if !exists('g:flutter_show_log_on_run')
