@@ -50,6 +50,11 @@ Flutter process will be hot reloaded.
 Hot restarts the current Flutter process, if one is
 running. See |:FlutterRun|.
 
+:FlutterScreenshot                           *:FlutterScreenshot*
+
+Takes a screenshot of the current Flutter application,
+if one Flutter process is running. See |:FlutterRun|.
+
 :FlutterQuit                                       *:FlutterQuit*
 
 Terminates the current Flutter process, if one is
