@@ -60,6 +60,10 @@ function! flutter#hot_restart_quiet() abort
   endif
 endfunction
 
+function! flutter#screenshot() abort
+  return flutter#send('s')
+endfunction
+
 function! flutter#quit() abort
   return flutter#send('q')
 endfunction

@@ -29,6 +29,7 @@ command! -nargs=1 FlutterEmulatorsLaunch call flutter#emulators_launch(<f-args>)
 command! -nargs=* FlutterRun call flutter#run(<f-args>)
 command! FlutterHotReload call flutter#hot_reload()
 command! FlutterHotRestart call flutter#hot_restart()
+command! FlutterScreenshot call flutter#screenshot()
 command! FlutterQuit call flutter#quit()
 command! FlutterVisualDebug call flutter#visual_debug()
 
@@ -51,6 +52,7 @@ function! FlutterMenu() abort
   menu Flutter.Open\ Output.In\ &Split :FlutterSplit<CR>
   menu Flutter.Open\ Output.In\ &VSplit :FlutterVSplit<CR>
   menu Flutter.Open\ Output.In\ &Tab :FlutterTab<CR>
+  menu Flutter.Screenshot :FlutterScreenshot<CR>
   menu Flutter.Quit :FlutterQuit<CR>
   menu Flutter.View\ Devices :FlutterDevices<CR>
 endfunction
