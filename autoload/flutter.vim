@@ -111,9 +111,9 @@ function! flutter#run(...) abort
     setlocal noswapfile
   endif
 
-  let cmd = g:flutter_command.' run'
+  let cmd = [&shell, &shellcmdflag, g:flutter_command, 'run']
   if !empty(a:000)
-    let cmd .= ' '.join(a:000)
+    let cmd += a:000
   endif
 
   if has('nvim')
@@ -128,8 +128,13 @@ function! flutter#run(...) abort
           \ 'out_name': '__Flutter_Output__',
           \ 'err_io': 'buffer',
           \ 'err_name': '__Flutter_Output__',
-          \ 'exit_cb': 'flutter#_exit_cb',
+          \ 'exit_cb': function('flutter#_exit_cb')
           \ })
+
+      if job_status(g:flutter_job) == 'fail'
+        echo 'Starting job failed'
+        unlet g:flutter_job
+      endif
   else
     echoerr 'This vim does not support async jobs needed for running Flutter.'
   endif
