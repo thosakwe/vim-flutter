@@ -4,7 +4,7 @@ else
   let g:loaded_flutter=1
 endif
 
-if !exists('g:flutter_command!')
+if !exists('g:flutter_command')
   let g:flutter_command='flutter'
 endif
 
