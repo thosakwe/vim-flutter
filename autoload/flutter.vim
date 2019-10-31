@@ -84,17 +84,16 @@ function! flutter#_on_output_nvim(job_id, data, event) abort dict
   if str =~ '\.\.\.'
     let g:flutter_partial_line_nvim = str
   else
-    if g:flutter_partial_line_nvim != ''
+    if and(g:flutter_partial_line_nvim != '', str !~ 'Reloaded')
 	  let str = g:flutter_partial_line_nvim . str
       let b = bufnr('__Flutter_Output__')
-      " Update Last Line with Time
       call nvim_buf_set_lines(b, -2, -1, v:true, [str])
       let g:flutter_partial_line_nvim = ''
 	  return
     endif
   endif
   let b = bufnr('__Flutter_Output__')
-  call nvim_buf_set_lines(b, -1, -1, v:true, [str])
+  call nvim_buf_set_lines(b, -1, -1, v:true, a:data)
 endfunction
 endif
 
