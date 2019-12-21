@@ -30,9 +30,23 @@ Setting this to `0` requires `set hidden` in your vimrc.
 
 See |buffer-hidden|.
 
+g:flutter_show_log_on_attach       *g:flutter_show_log_on_attach*
+
+Automatically open `__Flutter_Output__` when starting
+|g:flutter_command|; defaults to `1`.
+Setting this to `0` requires `set hidden` in your vimrc.
+
+See |buffer-hidden|.
+
 :FlutterRun                                         *:FlutterRun*
 
 Starts a Flutter process in the current directory, if
+none is currently running.
+See |g:flutter_command|.
+
+:FlutterAttach                                   *:FlutterAttach*
+
+Attach a Flutter process in the current directory, if
 none is currently running.
 See |g:flutter_command|.
 

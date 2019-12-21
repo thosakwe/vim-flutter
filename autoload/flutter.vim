@@ -135,3 +135,42 @@ function! flutter#run(...) abort
   endif
 
 endfunction
+
+function! flutter#attach(...) abort
+  if exists('g:flutter_job')
+    echoerr 'Another Flutter process is running.'
+    return 0
+  endif
+
+  if g:flutter_show_log_on_attach
+    split __Flutter_Output__
+    normal! ggdG
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+  endif
+
+  let cmd = g:flutter_command.' attach'
+  if !empty(a:000)
+    let cmd .= ' '.join(a:000)
+  endif
+
+  if has('nvim')
+    let g:flutter_job = jobstart(cmd, {
+          \ 'on_stdout' : function('flutter#_on_output_nvim'),
+          \ 'on_stderr' : function('flutter#_on_output_nvim'),
+          \ 'on_exit' : function('flutter#_on_exit_nvim'),
+          \ })
+  elseif v:version >= 800
+    let g:flutter_job = job_start(cmd, {
+          \ 'out_io': 'buffer',
+          \ 'out_name': '__Flutter_Output__',
+          \ 'err_io': 'buffer',
+          \ 'err_name': '__Flutter_Output__',
+          \ 'exit_cb': 'flutter#_exit_cb',
+          \ })
+  else
+    echoerr 'This vim does not support async jobs needed for running Flutter.'
+  endif
+
+endfunction
