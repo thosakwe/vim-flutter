@@ -35,7 +35,7 @@ g:flutter_use_last_run_option     *g:flutter_use_last_run_option*
 Reuse the command option of the last `FlutterRun`.
 Once `FlutterRun` executed w/ some option, following `FlutterRun`
 will execute w/ the last option.
-Overwirte saved option string when option specified execution.
+Overwrite
 defaults to `0`.
 
 :FlutterRun                                         *:FlutterRun*
