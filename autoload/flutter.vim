@@ -113,7 +113,14 @@ function! flutter#run(...) abort
 
   let cmd = g:flutter_command.' run'
   if !empty(a:000)
-    let cmd .= ' '.join(a:000)
+    let cmd += a:000
+    if g:flutter_use_last_run_option
+      let g:flutter_last_run_option = a:000
+    endif
+  else
+    if g:flutter_use_last_run_option && exists('g:flutter_last_run_option')
+      let cmd += g:flutter_last_run_option
+    endif
   endif
 
   if has('nvim')
