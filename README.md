@@ -52,6 +52,7 @@ flutter; defaults to `1`. Setting this to 0 requires `set hidden` in your vimrc.
 * `:FlutterEmulatorsLaunch` - Executes a `flutter emulators --launch` process, with any provided
 arguments.
 * `:FlutterVisualDebug` - Toggles visual debugging in the running Flutter process.
+* `:FlutterFormat` - calls `flutter format .`
 
 The following are self-explanatory:
 * `:FlutterVSplit`
