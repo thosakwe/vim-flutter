@@ -35,6 +35,7 @@ command! FlutterHotReload call flutter#hot_reload()
 command! FlutterHotRestart call flutter#hot_restart()
 command! FlutterQuit call flutter#quit()
 command! FlutterVisualDebug call flutter#visual_debug()
+command! FlutterFormat call flutter#format()
 
 if g:flutter_hot_reload_on_save
   autocmd! BufWritePost *.dart call flutter#hot_reload_quiet()
@@ -57,4 +58,5 @@ function! FlutterMenu() abort
   menu Flutter.Open\ Output.In\ &Tab :FlutterTab<CR>
   menu Flutter.Quit :FlutterQuit<CR>
   menu Flutter.View\ Devices :FlutterDevices<CR>
+  menu Flutter.Format :FlutterFormat<CR>
 endfunction

@@ -4,6 +4,13 @@ function! s:flutter_run_handler(job_id, data, event_type)
   echo join(a:data, '\n')
 endfunction
 
+function! flutter#format() abort
+  new
+  setlocal buftype=nofile
+  execute "read ! flutter format ."
+  setlocal nomodifiable
+endfunction
+
 function! flutter#devices() abort
   new
   setlocal buftype=nofile
