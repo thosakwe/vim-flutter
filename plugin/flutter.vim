@@ -31,7 +31,7 @@ command! FlutterDevices call flutter#devices()
 command! FlutterEmulators call flutter#emulators()
 command! -nargs=1 FlutterEmulatorsLaunch call flutter#emulators_launch(<f-args>)
 command! -nargs=* FlutterRun call flutter#run(<f-args>)
-command! FlutterHotReload call flutter#hot_reload()
+command! -nargs=* -complete=file FlutterRun call flutter#run(<f-args>)
 command! FlutterHotRestart call flutter#hot_restart()
 command! FlutterQuit call flutter#quit()
 command! FlutterVisualDebug call flutter#visual_debug()
@@ -48,7 +48,7 @@ command! FlutterSplit :split __Flutter_Output__
 command! FlutterVSplit :vsplit __Flutter_Output__
 command! FlutterTab :tabnew __Flutter_Output__
 
-function! FlutterMenu() abort  
+function! FlutterMenu() abort
   menu Flutter.Run :FlutterRun<CR>
   menu Flutter.Hot\ Reload :FlutterHotReload<CR>
   menu Flutter.Hot\ Restart :FlutterHotRestart<CR>
