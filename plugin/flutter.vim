@@ -30,7 +30,7 @@ endif
 command! FlutterDevices call flutter#devices()
 command! FlutterEmulators call flutter#emulators()
 command! -nargs=1 FlutterEmulatorsLaunch call flutter#emulators_launch(<f-args>)
-command! -nargs=* FlutterRun call flutter#run(<f-args>)
+command! FlutterHotReload call flutter#hot_reload()
 command! -nargs=* -complete=file FlutterRun call flutter#run(<f-args>)
 command! FlutterHotRestart call flutter#hot_restart()
 command! FlutterQuit call flutter#quit()
