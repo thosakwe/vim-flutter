@@ -27,11 +27,19 @@ elseif &hidden == 0 && g:flutter_show_log_on_run == 0
   let g:flutter_show_log_on_run = 1
 endif
 
+if !exists('g:flutter_show_log_on_attach')
+  let g:flutter_show_log_on_attach=1
+elseif &hidden == 0 && g:flutter_show_log_on_attach == 0
+  echoerr "WARNING: Hidden buffers are disabled. Setting g:flutter_show_log_on_attach to 1. Please add `set hidden` to your vimrc to keep the flutter log in the background."
+  let g:flutter_show_log_on_attach = 1
+endif
+
 command! FlutterDevices call flutter#devices()
 command! FlutterEmulators call flutter#emulators()
 command! -nargs=1 FlutterEmulatorsLaunch call flutter#emulators_launch(<f-args>)
 command! FlutterHotReload call flutter#hot_reload()
 command! -nargs=* -complete=file FlutterRun call flutter#run(<f-args>)
+command! -nargs=* -complete=file FlutterAttach call flutter#attach(<f-args>)
 command! FlutterHotRestart call flutter#hot_restart()
 command! FlutterQuit call flutter#quit()
 command! FlutterVisualDebug call flutter#visual_debug()
@@ -50,6 +58,7 @@ command! FlutterTab :tabnew __Flutter_Output__
 
 function! FlutterMenu() abort
   menu Flutter.Run :FlutterRun<CR>
+  menu Flutter.Attach :FlutterAttach<CR>
   menu Flutter.Hot\ Reload :FlutterHotReload<CR>
   menu Flutter.Hot\ Restart :FlutterHotRestart<CR>
   menu Flutter.Open\ Output.In\ &Split :FlutterSplit<CR>

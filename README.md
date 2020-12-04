@@ -40,9 +40,12 @@ are saved; defaults to `1`.
 are saved; defaults to `0`.
 * `g:flutter_show_log_on_run` - Automatically open `__Flutter_Output__` when starting
 flutter; defaults to `1`. Setting this to 0 requires `set hidden` in your vimrc.
+* `g:flutter_show_log_on_attach` - Automatically open `__Flutter_Output__` when starting
+flutter; defaults to `1`. Setting this to 0 requires `set hidden` in your vimrc.
 
 ## Provided Commands
 * `:FlutterRun <args>` - calls `flutter run <args>`
+* `:FlutterAttach <args>` - calls `flutter attach <args>`
 * `:FlutterHotReload` - triggers a hot reload on the current Flutter process
 * `:FlutterHotRestart` - triggers a hot restart on the current Flutter process
 * `:FlutterQuit` - quits the current Flutter process
@@ -80,6 +83,7 @@ call FlutterMenu()
 " Some of these key choices were arbitrary;
 " it's just an example.
 nnoremap <leader>fa :FlutterRun<cr>
+nnoremap <leader>fA :FlutterAttach<cr>
 nnoremap <leader>fq :FlutterQuit<cr>
 nnoremap <leader>fr :FlutterHotReload<cr>
 nnoremap <leader>fR :FlutterHotRestart<cr>
