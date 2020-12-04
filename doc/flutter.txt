@@ -38,6 +38,14 @@ Setting this to `0` requires `set hidden` in your vimrc.
 
 See |buffer-hidden|.
 
+g:flutter_use_last_run_option     *g:flutter_use_last_run_option*
+
+Reuse the command option of the last `FlutterRun`.
+Once `FlutterRun` executed w/ some option, following `FlutterRun`
+will execute w/ the last option.
+Overwrite
+defaults to `0`.
+
 :FlutterRun                                         *:FlutterRun*
 
 Starts a Flutter process in the current directory, if

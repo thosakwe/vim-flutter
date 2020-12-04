@@ -17,7 +17,7 @@ function! flutter#emulators() abort
   execute "read !" . g:flutter_command ."  emulators"
   setlocal nomodifiable
 endfunction
- 
+
 function! flutter#emulators_launch(emulator) abort
   let cmd = g:flutter_command . " emulators --launch ". a:emulator
   execute "!". cmd
@@ -80,20 +80,20 @@ endfunction
 
 let g:flutter_partial_line_nvim = ''
 function! flutter#_on_output_nvim(job_id, data, event) abort dict
-  if !empty(a:data)
-    " Append the first element to the previous partial line
-    let g:flutter_partial_line_nvim .= a:data[0]
-    " Check if any newlines to be printed
-    if len(a:data) > 1
+  let str = join(a:data, '')
+  if str =~ '\.\.\.'
+    let g:flutter_partial_line_nvim = str
+  else
+    if and(g:flutter_partial_line_nvim != '', str !~ 'Reloaded')
+	  let str = g:flutter_partial_line_nvim . str
       let b = bufnr('__Flutter_Output__')
-      " Print the now-finished partial line
-      call nvim_buf_set_lines(b, -1, -1, v:true, [g:flutter_partial_line_nvim])
-      " Print the rest of the complete lines (except the last)
-      call nvim_buf_set_lines(b, -1, -1, v:true, a:data[1:-2])
-      " Start the next partial line with the last element
-      let g:nvim_partial_line = a:data[-1]
+      call nvim_buf_set_lines(b, -2, -1, v:true, [str])
+      let g:flutter_partial_line_nvim = ''
+	  return
     endif
   endif
+  let b = bufnr('__Flutter_Output__')
+  call nvim_buf_set_lines(b, -1, -1, v:true, a:data)
 endfunction
 endif
 
@@ -113,7 +113,14 @@ function! flutter#run(...) abort
 
   let cmd = g:flutter_command.' run'
   if !empty(a:000)
-    let cmd .= ' '.join(a:000)
+    let cmd = cmd." ".join(a:000)
+    if g:flutter_use_last_run_option
+      let g:flutter_last_run_option = a:000
+    endif
+  else
+    if g:flutter_use_last_run_option && exists('g:flutter_last_run_option')
+      let cmd += g:flutter_last_run_option
+    endif
   endif
 
   if has('nvim')

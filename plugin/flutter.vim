@@ -16,6 +16,10 @@ if !exists('g:flutter_hot_restart_on_save')
   let g:flutter_hot_restart_on_save=0
 endif
 
+if !exists('g:flutter_use_last_run_option')
+  let g:flutter_use_last_run_option=0
+endif
+
 if !exists('g:flutter_show_log_on_run')
   let g:flutter_show_log_on_run=1
 elseif &hidden == 0 && g:flutter_show_log_on_run == 0
@@ -33,9 +37,9 @@ endif
 command! FlutterDevices call flutter#devices()
 command! FlutterEmulators call flutter#emulators()
 command! -nargs=1 FlutterEmulatorsLaunch call flutter#emulators_launch(<f-args>)
-command! -nargs=* FlutterRun call flutter#run(<f-args>)
-command! -nargs=* FlutterAttach call flutter#attach(<f-args>)
 command! FlutterHotReload call flutter#hot_reload()
+command! -nargs=* -complete=file FlutterRun call flutter#run(<f-args>)
+command! -nargs=* -complete=file FlutterAttach call flutter#attach(<f-args>)
 command! FlutterHotRestart call flutter#hot_restart()
 command! FlutterQuit call flutter#quit()
 command! FlutterVisualDebug call flutter#visual_debug()
@@ -52,7 +56,7 @@ command! FlutterSplit :split __Flutter_Output__
 command! FlutterVSplit :vsplit __Flutter_Output__
 command! FlutterTab :tabnew __Flutter_Output__
 
-function! FlutterMenu() abort  
+function! FlutterMenu() abort
   menu Flutter.Run :FlutterRun<CR>
   menu Flutter.Attach :FlutterAttach<CR>
   menu Flutter.Hot\ Reload :FlutterHotReload<CR>
