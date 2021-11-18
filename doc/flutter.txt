@@ -46,6 +46,14 @@ will execute w/ the last option.
 Overwrite
 defaults to `0`.
 
+g:flutter_use_last_attach_option  *g:flutter_use_last_attach_option*
+
+Reuse the command option of the last `FlutterAttach`.
+Once `FlutterAttach` executed w/ some option, following `FlutterAttach`
+will execute w/ the last option.
+Overwrite
+defaults to `0`.
+
 :FlutterRun                                         *:FlutterRun*
 
 Starts a Flutter process in the current directory, if

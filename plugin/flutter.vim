@@ -20,6 +20,10 @@ if !exists('g:flutter_use_last_run_option')
   let g:flutter_use_last_run_option=0
 endif
 
+if !exists('g:flutter_use_last_attach_option')
+  let g:flutter_use_last_attach_option=0
+endif
+
 if !exists('g:flutter_show_log_on_run')
   let g:flutter_show_log_on_run=1
 elseif &hidden == 0 && g:flutter_show_log_on_run == 0
