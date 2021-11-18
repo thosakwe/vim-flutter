@@ -94,8 +94,21 @@ function! flutter#_on_output_nvim(job_id, data, event) abort dict
   endif
   let b = bufnr('__Flutter_Output__')
   call nvim_buf_set_lines(b, -1, -1, v:true, a:data)
+
+  call flutter#scroll_to_bottom()
 endfunction
 endif
+
+function! flutter#scroll_to_bottom()
+  if has('nvim') && g:flutter_autoscroll
+    let l:bufinfo = getbufinfo('__Flutter_Output__')[0]
+    let l:lnum = l:bufinfo['linecount']
+    let l:windows = l:bufinfo['windows']
+    if len(l:windows) > 0
+      call nvim_win_set_cursor(l:windows[0], [l:lnum, 0])
+    end
+  endif
+endfunction
 
 function! flutter#run(...) abort
   if exists('g:flutter_job')
