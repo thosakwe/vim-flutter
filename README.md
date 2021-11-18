@@ -41,6 +41,7 @@ are saved; defaults to `0`.
 * `g:flutter_show_log_on_run` - Automatically open `__Flutter_Output__` when starting
 flutter; defaults to `1`. Setting this to 0 requires `set hidden` in your vimrc. It may
 also be set to `"tab"` to open the log in a new tab rather than splitting the window.
+* `g:flutter_autoscroll` - Autoscroll the flutter log when `1`, defaults to `0`.
 
 ## Provided Commands
 * `:FlutterRun <args>` - calls `flutter run <args>`

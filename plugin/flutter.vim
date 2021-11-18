@@ -8,6 +8,10 @@ if !exists('g:flutter_command')
   let g:flutter_command='flutter'
 endif
 
+if !exists('g:flutter_autoscroll')
+  let g:flutter_autoscroll=0
+endif
+
 if !exists('g:flutter_hot_reload_on_save')
   let g:flutter_hot_reload_on_save=1
 endif
@@ -44,9 +48,9 @@ if g:flutter_hot_restart_on_save
   autocmd! BufWritePost *.dart call flutter#hot_restart_quiet()
 endif
 
-command! FlutterSplit :split __Flutter_Output__
-command! FlutterVSplit :vsplit __Flutter_Output__
-command! FlutterTab :tabnew __Flutter_Output__
+command! FlutterSplit :split __Flutter_Output__ | call flutter#scroll_to_bottom()
+command! FlutterVSplit :vsplit __Flutter_Output__ | call flutter#scroll_to_bottom()
+command! FlutterTab :tabnew __Flutter_Output__ | call flutter#scroll_to_bottom()
 
 function! FlutterMenu() abort
   menu Flutter.Run :FlutterRun<CR>
