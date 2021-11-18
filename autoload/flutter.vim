@@ -103,8 +103,14 @@ function! flutter#run(...) abort
     return 0
   endif
 
-  if g:flutter_show_log_on_run
-    split __Flutter_Output__
+  if g:flutter_show_log_on_run || type(g:flutter_show_log_on_run) == v:t_string
+    if g:flutter_show_log_on_run == "tab"
+      " open new tab and move it before the current tab
+      tabnew __Flutter_Output__
+      tabm -1
+    else
+      split __Flutter_Output__
+    endif
     normal! ggdG
     setlocal buftype=nofile
     setlocal bufhidden=hide
