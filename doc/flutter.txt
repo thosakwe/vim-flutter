@@ -1,0 +1,105 @@
+*flutter.txt*	For Vim version 8.1	Last change: 2018 March 13
+
+                         Flutter ~
+
+                Flutter commands for Vim. ~
+===============================================================
+COMMANDS                                                *flutter*
+
+g:flutter_command                             *g:flutter_command*
+
+The name of the `flutter` executable. Defaults to `flutter`.
+
+g:flutter_hot_reload_on_save       *g:flutter_hot_reload_on_save*
+
+Whether to auto hot-reload when `dart` files are saved.
+Defaults to `1`.
+See |:FlutterHotReload|.
+
+g:flutter_hot_restart_on_save     *g:flutter_hot_restart_on_save*
+
+Whether to auto hot-restart when `dart` files are saved.
+Defaults to `0`.
+See |:FlutterHotRestart|.
+
+g:flutter_show_log_on_run             *g:flutter_show_log_on_run*
+
+Automatically open `__Flutter_Output__` when starting
+|g:flutter_command|; defaults to `1`.
+Setting this to `0` requires `set hidden` in your vimrc.
+
+See |buffer-hidden|.
+
+g:flutter_use_last_run_option     *g:flutter_use_last_run_option*
+
+Reuse the command option of the last `FlutterRun`.
+Once `FlutterRun` executed w/ some option, following `FlutterRun`
+will execute w/ the last option.
+Overwrite
+defaults to `0`.
+
+:FlutterRun                                         *:FlutterRun*
+
+Starts a Flutter process in the current directory, if
+none is currently running.
+See |g:flutter_command|.
+
+:FlutterHotReload                             *:FlutterHotReload*
+
+Hot reloads the current Flutter process, if one is
+running. See |:FlutterRun|.
+
+If |g:flutter_hot_reload_on_save| is enabled (default),
+then whenever a `dart` file is saved, the running
+Flutter process will be hot reloaded.
+
+:FlutterHotRestart                           *:FlutterHotRestart*
+
+Hot restarts the current Flutter process, if one is
+running. See |:FlutterRun|.
+
+:FlutterQuit                                       *:FlutterQuit*
+
+Terminates the current Flutter process, if one is
+running. See |:FlutterRun|.
+
+:FlutterDevices                                 *:FlutterDevices*
+
+Runs the `flutter devices` commnd, and places the
+output in a new buffer.
+See |g:flutter_command|.
+
+:FlutterSplit                                     *:FlutterSplit*
+
+Opens the `__Flutter_Output` buffer in a split window.
+
+:FlutterVSplit                                   *:FlutterVSplit*
+
+Opens the `__Flutter_Output__` buffer in a
+vertical split window.
+
+:FlutterTab                                         *:FlutterTab*
+
+Opens the `__Flutter_Output__` buffer in a new tab.
+
+:FlutterEmulators                                   *:FlutterEmulators*
+
+Executes a `flutter emulators` process.
+
+:FlutterEmulatorsLaunch                       *:FlutterEmulatorsLaunch*
+
+Executes a `flutter emulators --launch` process, with any provided
+arguments.
+
+:FlutterVisualDebug                               *:FlutterVisualDebug*
+
+Toggles visual debugging in the running Flutter process.
+
+FlutterMenu                                         *FlutterMenu*
+
+Creates a `Flutter` menu. Will likely error if GUI is not
+enabled.
+
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
