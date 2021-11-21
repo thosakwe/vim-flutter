@@ -24,10 +24,20 @@ if !exists('g:flutter_use_last_run_option')
   let g:flutter_use_last_run_option=0
 endif
 
+if !exists('g:flutter_use_last_attach_option')
+  let g:flutter_use_last_attach_option=0
+endif
+
 if !exists('g:flutter_show_log_on_run') || g:flutter_show_log_on_run == 1
   let g:flutter_show_log_on_run="split"
 elseif type(g:flutter_show_log_on_run) == v:t_number && g:flutter_show_log_on_run == 0
   let g:flutter_show_log_on_run="hidden"
+endif
+
+if !exists('g:flutter_show_log_on_attach') || g:flutter_show_log_on_attach == 1
+  let g:flutter_show_log_on_attach="split"
+elseif type(g:flutter_show_log_on_attach) == v:t_number && g:flutter_show_log_on_attach == 0
+  let g:flutter_show_log_on_attach="hidden"
 endif
 
 command! FlutterDevices call flutter#devices()
@@ -35,6 +45,7 @@ command! FlutterEmulators call flutter#emulators()
 command! -nargs=1 FlutterEmulatorsLaunch call flutter#emulators_launch(<f-args>)
 command! FlutterHotReload call flutter#hot_reload()
 command! -nargs=* -complete=file FlutterRun call flutter#run(<f-args>)
+command! -nargs=* -complete=file FlutterAttach call flutter#attach(<f-args>)
 command! FlutterHotRestart call flutter#hot_restart()
 command! FlutterQuit call flutter#quit()
 command! FlutterVisualDebug call flutter#visual_debug()
@@ -53,6 +64,7 @@ command! FlutterTab :tabnew __Flutter_Output__ | call flutter#scroll_to_bottom()
 
 function! FlutterMenu() abort
   menu Flutter.Run :FlutterRun<CR>
+  menu Flutter.Attach :FlutterAttach<CR>
   menu Flutter.Hot\ Reload :FlutterHotReload<CR>
   menu Flutter.Hot\ Restart :FlutterHotRestart<CR>
   menu Flutter.Open\ Output.In\ &Split :FlutterSplit<CR>

@@ -110,13 +110,15 @@ function! flutter#scroll_to_bottom()
   endif
 endfunction
 
-function! flutter#run(...) abort
+let s:last_options = {}
+
+function! flutter#run_or_attach(type, show, use_last_option, args) abort
   if exists('g:flutter_job')
     echoerr 'Another Flutter process is running.'
     return 0
   endif
 
-  if g:flutter_show_log_on_run == "tab" || g:flutter_show_log_on_run == "hidden"
+  if a:show == 'tab' || a:show == 'hidden'
     " open new tab and move it before the current tab
     tabnew __Flutter_Output__
     tabm -1
@@ -127,19 +129,20 @@ function! flutter#run(...) abort
   setlocal buftype=nofile
   setlocal bufhidden=hide
   setlocal noswapfile
-  if g:flutter_show_log_on_run == "hidden"
+  if a:show == 'hidden'
     tabclose
   endif
 
-  let cmd = g:flutter_command.' run'
-  if !empty(a:000)
-    let cmd = cmd." ".join(a:000)
-    if g:flutter_use_last_run_option
-      let g:flutter_last_run_option = a:000
+  let cmd = [g:flutter_command, a:type]
+  if !empty(a:args)
+    let cmd += a:args
+    if a:use_last_option
+      let s:last_options[a:type] = a:args
     endif
   else
-    if g:flutter_use_last_run_option && exists('g:flutter_last_run_option')
-      let cmd += g:flutter_last_run_option
+    if a:use_last_option
+      let last_option = get(s:last_options, a:type, [])
+      let cmd += last_option
     endif
   endif
 
@@ -160,5 +163,12 @@ function! flutter#run(...) abort
   else
     echoerr 'This vim does not support async jobs needed for running Flutter.'
   endif
+endfunction
 
+function! flutter#run(...) abort
+  call flutter#run_or_attach('run', g:flutter_show_log_on_run, g:flutter_use_last_run_option, a:000)
+endfunction
+
+function! flutter#attach(...) abort
+  call flutter#run_or_attach('attach', g:flutter_show_log_on_attach, g:flutter_use_last_attach_option, a:000)
 endfunction
