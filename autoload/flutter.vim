@@ -85,11 +85,11 @@ function! flutter#_on_output_nvim(job_id, data, event) abort dict
     let g:flutter_partial_line_nvim = str
   else
     if and(g:flutter_partial_line_nvim != '', str !~ 'Reloaded')
-	  let str = g:flutter_partial_line_nvim . str
+    let str = g:flutter_partial_line_nvim . str
       let b = bufnr('__Flutter_Output__')
       call nvim_buf_set_lines(b, -2, -1, v:true, [str])
       let g:flutter_partial_line_nvim = ''
-	  return
+    return
     endif
   endif
   let b = bufnr('__Flutter_Output__')
@@ -133,7 +133,11 @@ function! flutter#run_or_attach(type, show, use_last_option, args) abort
     tabclose
   endif
 
-  let cmd = [g:flutter_command, a:type]
+  let cmd = []
+  if has("win32") || has("win64")
+    let cmd += [&shell, &shellcmdflag]
+  endif
+  let cmd += [g:flutter_command, a:type]
   if !empty(a:args)
     let cmd += a:args
     if a:use_last_option
@@ -160,6 +164,11 @@ function! flutter#run_or_attach(type, show, use_last_option, args) abort
           \ 'err_name': '__Flutter_Output__',
           \ 'exit_cb': 'flutter#_exit_cb',
           \ })
+
+    if job_status(g:flutter_job) == 'fail'
+      echo 'Could not start flutter job'
+      unlet g:flutter_job
+    endif
   else
     echoerr 'This vim does not support async jobs needed for running Flutter.'
   endif
