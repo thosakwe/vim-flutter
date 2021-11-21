@@ -64,6 +64,10 @@ function! flutter#quit() abort
   return flutter#send('q')
 endfunction
 
+function! flutter#screenshot() abort
+  return flutter#send('s')
+endfunction
+
 function! flutter#_exit_cb(job, status) abort
   if exists('g:flutter_job')
     unlet g:flutter_job

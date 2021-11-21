@@ -56,6 +56,7 @@ affecting the `:FlutterAttach` command.
 * `:FlutterAttach <args>` - calls `flutter attach <args>`
 * `:FlutterHotReload` - triggers a hot reload on the current Flutter process
 * `:FlutterHotRestart` - triggers a hot restart on the current Flutter process
+* `:FlutterScreenshot` - takes a screenshot of the current Flutter application and saves it in the project directory
 * `:FlutterQuit` - quits the current Flutter process
 * `:FlutterDevices` - opens a new buffer, and writes the output of `flutter devices` to it
 * `:FlutterSplit` - opens Flutter output in a horizontal split

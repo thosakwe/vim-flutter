@@ -47,6 +47,7 @@ command! FlutterHotReload call flutter#hot_reload()
 command! -nargs=* -complete=file FlutterRun call flutter#run(<f-args>)
 command! -nargs=* -complete=file FlutterAttach call flutter#attach(<f-args>)
 command! FlutterHotRestart call flutter#hot_restart()
+command! FlutterScreenshot call flutter#screenshot()
 command! FlutterQuit call flutter#quit()
 command! FlutterVisualDebug call flutter#visual_debug()
 
@@ -67,6 +68,7 @@ function! FlutterMenu() abort
   menu Flutter.Attach :FlutterAttach<CR>
   menu Flutter.Hot\ Reload :FlutterHotReload<CR>
   menu Flutter.Hot\ Restart :FlutterHotRestart<CR>
+  menu Flutter.Screenshot :FlutterScreenshot<CR>
   menu Flutter.Open\ Output.In\ &Split :FlutterSplit<CR>
   menu Flutter.Open\ Output.In\ &VSplit :FlutterVSplit<CR>
   menu Flutter.Open\ Output.In\ &Tab :FlutterTab<CR>
