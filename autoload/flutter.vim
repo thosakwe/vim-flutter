@@ -141,7 +141,7 @@ function! flutter#run_or_attach(type, show, use_last_option, args) abort
   if has("win32") || has("win64")
     let cmd += [&shell, &shellcmdflag]
   endif
-  let cmd += [g:flutter_command, a:type]
+  let cmd += split(g:flutter_command) + [a:type]
   if !empty(a:args)
     let cmd += a:args
     if a:use_last_option
