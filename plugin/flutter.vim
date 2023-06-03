@@ -63,7 +63,7 @@ if g:flutter_hot_restart_on_save
   autocmd! BufWritePost *.dart call flutter#hot_restart_quiet()
 endif
 
-command! FlutterSplit :split __Flutter_Output__ | call flutter#scroll_to_bottom()
+command! FlutterSplit :execute g:flutter_split_height."split" "__Flutter_Output__" | call flutter#scroll_to_bottom()
 command! FlutterVSplit :vsplit __Flutter_Output__ | call flutter#scroll_to_bottom()
 command! FlutterTab :tabnew __Flutter_Output__ | call flutter#scroll_to_bottom()
 
