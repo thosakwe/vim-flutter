@@ -45,6 +45,9 @@ flutter using `:FlutterRun`; it can have one of the following values:
   * `"hidden"` or `0`: Do not open the log by default, can be opened later with `FlutterSplit` etc.
 * `g:flutter_show_log_on_attach` - Identical to `g:flutter_show_log_on_run` but affecting
 the `:FlutterAttach` command.
+* `g:flutter_split_height` - Initial height of the window opened by `:FlutterSplit` (or `:FlutterRun` and
+  `:FlutterAttach`, when `g:flutter_show_log_on_run` is set to `"split"`); defaults to standard vim behavior,
+  which is splitting the window in half.
 * `g:flutter_autoscroll` - Autoscroll the flutter log when `1`, defaults to `0`.
 * `g:flutter_use_last_run_option` - When set to `1` then `:FlutterRun` will use the arguments from
 the previous call when no arguments are specified.
