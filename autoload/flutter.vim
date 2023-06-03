@@ -127,7 +127,7 @@ function! flutter#run_or_attach(type, show, use_last_option, args) abort
     tabnew __Flutter_Output__
     tabm -1
   else
-    split __Flutter_Output__
+    execute g:flutter_split_height."split" "__Flutter_Output__"
   endif
   normal! ggdG
   setlocal buftype=nofile
