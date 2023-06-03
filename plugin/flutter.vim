@@ -8,6 +8,10 @@ if !exists('g:flutter_command')
   let g:flutter_command='flutter'
 endif
 
+if !exists('g:flutter_split_height')
+    let g:flutter_split_height=''
+endif
+
 if !exists('g:flutter_autoscroll')
   let g:flutter_autoscroll=0
 endif
