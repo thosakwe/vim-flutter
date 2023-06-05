@@ -1,4 +1,4 @@
-*flutter.txt*	For Vim version 8.1	Last change: 2018 March 13
+*flutter.txt*	For Vim version 8.1	Last change: 2023 June 5
 
                          Flutter ~
 
@@ -37,6 +37,11 @@ Once `FlutterRun` executed w/ some option, following `FlutterRun`
 will execute w/ the last option.
 Overwrite
 defaults to `0`.
+
+g:flutter_close_on_quit                 *g:flutter_close_on_quit*
+Whether to automatically close all `__Flutter_Output__` windows
+(splits and tabs) when calling |:FlutterQuit|.
+Defaults to `0`.
 
 :FlutterRun                                         *:FlutterRun*
 
