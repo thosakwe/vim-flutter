@@ -131,19 +131,22 @@ function! flutter#run_or_attach(type, show, use_last_option, args) abort
     return 0
   endif
 
-  if a:show == 'tab' || a:show == 'hidden'
-    " open new tab and move it before the current tab
-    tabnew __Flutter_Output__
-    tabm -1
-  else
-    execute g:flutter_split_height."split" "__Flutter_Output__"
-  endif
-  normal! ggdG
-  setlocal buftype=nofile
-  setlocal bufhidden=hide
-  setlocal noswapfile
-  if a:show == 'hidden'
-    tabclose
+  let l:bufinfo = getbufinfo('__Flutter_Output__')
+  if len(l:bufinfo) == 0 || len(l:bufinfo[0].windows) == 0
+    if a:show == 'tab' || a:show == 'hidden'
+      " open new tab and move it before the current tab
+      tabnew __Flutter_Output__
+      tabm -1
+    else
+      execute g:flutter_split_height."split" "__Flutter_Output__"
+    endif
+    normal! ggdG
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    if a:show == 'hidden'
+      tabclose
+    endif
   endif
 
   let cmd = []
