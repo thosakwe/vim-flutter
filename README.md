@@ -53,6 +53,8 @@ the `:FlutterAttach` command.
 the previous call when no arguments are specified.
 * `g:flutter_use_last_attach_option` - Identical to `g:flutter_use_last_run_option` but
 affecting the `:FlutterAttach` command.
+* `g:flutter_close_on_quit` - Whether to close all `__Flutter_Output__` windows (splits and tabs) on `:FlutterQuit`;
+defaults to `0`.
 
 ## Provided Commands
 * `:FlutterRun <args>` - calls `flutter run <args>`

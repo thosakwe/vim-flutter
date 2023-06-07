@@ -61,7 +61,16 @@ function! flutter#hot_restart_quiet() abort
 endfunction
 
 function! flutter#quit() abort
-  return flutter#send('q')
+  let l:ret = flutter#send('q')
+  if g:flutter_close_on_quit
+    let l:bufinfo = getbufinfo('__Flutter_Output__')
+    if len(l:bufinfo) > 0
+      for l:win_id in l:bufinfo[0].windows
+        call win_execute(l:win_id, 'close')
+      endfor
+    endif
+  endif
+  return l:ret
 endfunction
 
 function! flutter#screenshot() abort

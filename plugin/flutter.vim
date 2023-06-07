@@ -44,6 +44,10 @@ elseif type(g:flutter_show_log_on_attach) == v:t_number && g:flutter_show_log_on
   let g:flutter_show_log_on_attach="hidden"
 endif
 
+if !exists('g:flutter_close_on_quit')
+    let g:flutter_close_on_quit=0
+endif
+
 command! FlutterDevices call flutter#devices()
 command! FlutterEmulators call flutter#emulators()
 command! -nargs=1 FlutterEmulatorsLaunch call flutter#emulators_launch(<f-args>)
