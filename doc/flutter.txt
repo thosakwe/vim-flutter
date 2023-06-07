@@ -30,6 +30,14 @@ Setting this to `0` requires `set hidden` in your vimrc.
 
 See |buffer-hidden|.
 
+g:flutter_split_height                   *g:flutter_split_height*
+
+Sets the initial height of the window opened by |:FlutterSplit|
+(or |:FlutterRun| and |:FlutterAttach|, when
+|g:flutter_show_log_on_run| is set to `"split"`).
+Defaults to standard vim behavior, which is splitting the current
+window in half.
+
 g:flutter_use_last_run_option     *g:flutter_use_last_run_option*
 
 Reuse the command option of the last `FlutterRun`.
