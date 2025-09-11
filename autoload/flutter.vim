@@ -7,7 +7,7 @@ endfunction
 function! flutter#devices() abort
   new
   setlocal buftype=nofile
-  execute "read ! flutter devices"
+  execute "read !" . g:flutter_command . " devices"
   setlocal nomodifiable
 endfunction
 
